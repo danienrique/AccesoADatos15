@@ -17,7 +17,7 @@ public class AlumnoDaoImplSQL implements AlumnoDao {
 		instancia = new AlumnoDaoImplSQL();
 	}
 
-	private AlumnoDaoImplSQL() {
+	public AlumnoDaoImplSQL() {
 	}
 
 	public static AlumnoDaoImplSQL getInstancia() {
