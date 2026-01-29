@@ -22,7 +22,7 @@ public class AlumnoDaoImplJson implements AlumnoDao {
 	}
 
 	@Override
-	public void modificarNombreAlumno(Alumno a) {
+	public void modificarNombreAlumno(int pk) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -34,7 +34,12 @@ public class AlumnoDaoImplJson implements AlumnoDao {
 	}
 
 	@Override
-	public void eliminarAlumnoCurso(Grupo g) {
+	public void eliminarAlumnoCurso(int pk) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mostrarGrupos() {
 		// TODO Auto-generated method stub
 		
 	}

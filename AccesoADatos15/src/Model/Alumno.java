@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Alumno {
 	private int nia;
 	private String nombre, apellidos;
-	private String grupo_id;
+	private int grupo_id;
 	private char genero;
 	private LocalDate fecha_nacimiento;
 	
@@ -27,10 +27,10 @@ public class Alumno {
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
-	public String getGrupo() {
+	public int getGrupo() {
 		return grupo_id;
 	}
-	public void setGrupo(String grupo) {
+	public void setGrupo(int grupo) {
 		this.grupo_id = grupo;
 	}
 	public char getGenero() {
@@ -47,7 +47,7 @@ public class Alumno {
 	}
 	public Alumno(){
 	}
-	public Alumno(int ni, String name, String surname,  char genre, int anio, int mes, int dia, String group) {
+	public Alumno(int ni, String name, String surname,  char genre, int anio, int mes, int dia, int group) {
 		this.nia = ni;
 		this.nombre = name;
 		this.apellidos = surname;
@@ -56,7 +56,7 @@ public class Alumno {
 		convertidorDeFechas(anio,mes,dia);
 		
 	}
-	public Alumno(String name, String surname,  char genre, int anio, int mes, int dia, String group) {
+	public Alumno(String name, String surname,  char genre, int anio, int mes, int dia, int group) {
 		this.nombre = name;
 		this.apellidos = surname;
 		this.grupo_id = group;
@@ -64,7 +64,7 @@ public class Alumno {
 		convertidorDeFechas(anio,mes,dia);
 		
 	}
-	public Alumno(int ni, String name, String surname,  char genre,LocalDate fecha , String group) {
+	public Alumno(int ni, String name, String surname,  char genre,LocalDate fecha , int group) {
 		this.nia = ni;
 		this.nombre = name;
 		this.apellidos = surname;

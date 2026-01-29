@@ -1,7 +1,10 @@
 package Vista;
 
+import java.time.LocalDate;
+import java.util.Scanner;
+
 public class VistaImplConsola implements IVista{
-	
+	private static Scanner sc = new Scanner(System.in);
 	public VistaImplConsola() {
 		
 	}
@@ -19,4 +22,54 @@ public class VistaImplConsola implements IVista{
 			System.out.println("10. Importar grupos desde JSON");
 			System.out.println("0. Salir");
 		}
+	@Override
+	public int pedirOpcion() {
+		// TODO Auto-generated method stub
+		return sc.nextInt();
+	}
+	@Override
+	public String pedirNombreAlumno() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public String pedirApellidos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public char pedirGenero() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public LocalDate pedirFecha() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public String pedirNombreGrupo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public int pedirIdGrupo() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public String pedirCiclo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public String pedirCurso() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public int pedirNia() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

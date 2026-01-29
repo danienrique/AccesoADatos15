@@ -3,7 +3,6 @@ package Dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Scanner;
 
 import Model.Alumno;
@@ -102,16 +101,13 @@ public class AlumnoDaoImplSQL implements AlumnoDao {
 	}
 
 	@Override
-	public void modificarNombreAlumno(Alumno a) {
-		// TODO Auto-generated method stub
-		System.out.println("Indique el NIA del alumno a modificar");
-		int nia = sc.nextInt();
+	public void modificarNombreAlumno(int pk) {
 		System.out.println("Indique el nuevo nombre de la persona");
 		String nombreNuevo = sc.nextLine();
 		try (Connection con = MyDataSource.getConnection();
 				PreparedStatement ps = con.prepareStatement("UPDATE alumnos SET Nombre = ? WHERE Nia = ?");) {
 			ps.setString(1, nombreNuevo);
-			ps.setInt(2, nia);
+			ps.setInt(2, pk);
 			ps.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -137,26 +133,31 @@ public class AlumnoDaoImplSQL implements AlumnoDao {
 
 	}
 	@Override
-	public void eliminarAlumnoCurso(Grupo g) {
+	public void eliminarAlumnoCurso(int pk) {
 		// TODO Auto-generated method stub
 		try (Connection con = MyDataSource.getConnection()) {
-			try (PreparedStatement ps = con.prepareStatement("SELECT Nombre, Curso, Ciclo FROM grupos")) {
-				ResultSet rs = ps.executeQuery();
-				System.out.println("Cursos existentes:");
-				while (rs.next()) {
-					System.out.println("- " + rs.getString(1));
-				}
-			}
-			System.out.print("Curso a eliminar: ");
-			String curso = sc.nextLine();
+//			try (PreparedStatement ps = con.prepareStatement("SELECT Nombre, Curso, Ciclo FROM grupos")) {
+//				ResultSet rs = ps.executeQuery();
+//				System.out.println("Cursos existentes:");
+//				while (rs.next()) {
+//					System.out.println("- " + rs.getString(1));
+//				}
+//			}
+//			System.out.print("Curso a eliminar: ");
+//			String curso = sc.nextLine();
 
 			try (PreparedStatement ps = con.prepareStatement(
-					"DELETE a FROM alumnos a JOIN grupos g ON a.Id_grupo = g.Id_grupo WHERE g.curso = ?");) {
-				ps.setString(1, curso);
+					"DELETE a FROM alumnos a JOIN grupos g ON a.Id_grupo = g.Id_grupo WHERE g.Id_grupo = ?");) {
+				ps.setInt(1, pk);
 				ps.executeUpdate();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	@Override
+	public void mostrarGrupos() {
+		// TODO Auto-generated method stub
+		
 	}
 }
