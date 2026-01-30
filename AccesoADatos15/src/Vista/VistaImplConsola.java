@@ -1,6 +1,8 @@
 package Vista;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class VistaImplConsola implements IVista{
@@ -24,52 +26,92 @@ public class VistaImplConsola implements IVista{
 		}
 	@Override
 	public int pedirOpcion() {
-		// TODO Auto-generated method stub
-		return sc.nextInt();
+		System.out.print("Opción: ");
+        int opcion = sc.nextInt();
+        sc.nextLine();
+        return opcion;
 	}
 	@Override
 	public String pedirNombreAlumno() {
 		// TODO Auto-generated method stub
-		return null;
+		System.out.println("¿Cual es el nombre del alumno?");
+		return sc.nextLine();
 	}
 	@Override
 	public String pedirApellidos() {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("¿Cual es el apellido del alumno?");
+		return sc.nextLine();
 	}
 	@Override
 	public char pedirGenero() {
-		// TODO Auto-generated method stub
-		return 0;
+		char genero = ' ';
+	    boolean valido = false;
+
+	    do {
+	        System.out.println("Introduce el género del alumno (M/F)");
+	        String entrada = sc.nextLine().trim().toUpperCase(); // Limpiamos espacios y pasamos a mayúsculas
+
+	        if (!entrada.isEmpty() && (entrada.charAt(0) == 'M' || entrada.charAt(0) == 'F')) {
+	            genero = entrada.charAt(0);
+	            valido = true;
+	        } else {
+	            System.out.println("Error: Por favor, introduce solo 'M' o 'F'.");
+	        }
+	    } while (!valido);
+
+	    return genero;
 	}
 	@Override
 	public LocalDate pedirFecha() {
-		// TODO Auto-generated method stub
-		return null;
+	    // Definimos el formato que queremos (ejemplo: día/mes/año)
+	    DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	    LocalDate fechaValida = null;
+
+	    while (fechaValida == null) {
+	        try {
+	            System.out.println("Introduce la fecha de nacimiento (dd/mm/aaaa):");
+	            String entrada = sc.nextLine();
+	            
+	            // Intentamos convertir la entrada usando nuestro formato
+	            fechaValida = LocalDate.parse(entrada, formato);
+	            
+	        } catch (DateTimeParseException e) {
+	            System.out.println("Formato incorrecto. Por favor, usa el formato día/mes/año (ej: 15/05/2000)");
+	        }
+	    }
+	    
+	    return fechaValida;
 	}
 	@Override
 	public String pedirNombreGrupo() {
 		// TODO Auto-generated method stub
-		return null;
+		System.out.println("¿Cual es el nombre del grupo?");
+		return sc.nextLine();
 	}
 	@Override
 	public int pedirIdGrupo() {
-		// TODO Auto-generated method stub
-		return 0;
+		System.out.println("Introduce el ID del grupo:");
+        int id = sc.nextInt();
+        sc.nextLine();
+        return id;
 	}
 	@Override
 	public String pedirCiclo() {
 		// TODO Auto-generated method stub
-		return null;
+		System.out.println("¿Cual es el nombre del ciclo?");
+		return sc.nextLine();
 	}
 	@Override
 	public String pedirCurso() {
 		// TODO Auto-generated method stub
-		return null;
+		System.out.println("¿Cual es el nombre del curso?");
+		return sc.nextLine();
 	}
 	@Override
 	public int pedirNia() {
-		// TODO Auto-generated method stub
-		return 0;
+		System.out.println("¿Cuál es el NIA del alumno?");
+        int nia = sc.nextInt();
+        sc.nextLine();
+        return nia;
 	}
 }

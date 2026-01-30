@@ -76,7 +76,7 @@ public class AlumnoDaoImplSQL implements AlumnoDao {
 			ps.setString(2, a.getNombre());
 			ps.setString(3, a.getApellidos());
 			ps.setString(4, String.valueOf(a.getGenero()));
-			ps.setDate(5, a.getFecha_nacimiento());
+			ps.setDate(5, java.sql.Date.valueOf(a.getFecha_nacimiento()));
 			ps.setInt(6, a.getGrupo());
 			ps.executeUpdate();
 		} catch (Exception e) {
