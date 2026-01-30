@@ -1,6 +1,8 @@
 package App;
 
 
+import java.util.ArrayList;
+
 import Dao.AlumnoDao;
 import Model.Alumno;
 import Model.Grupo;
@@ -31,10 +33,16 @@ public class Controlador {
 				Dao.mostrarAlumnos();
 				break;
 			case 4:
-				
+				ArrayList<Alumno> aOpcion4 = Dao.obtenerAlumnos();
+				Conversor convOpcion4 = new ConversorTexto();
+				convOpcion4.exportarAlumnos(aOpcion4);
 				break;
 			case 5: 
-				
+				Conversor convOpcion5 = new ConversorTexto();
+				ArrayList<Alumno> aOpcion5 = convOpcion5.importarAlumnos();
+				for(Alumno aux:aOpcion5) {
+					Dao.insertarAlumno(aux);
+				}
 				break;
 			case 6:
 				int pk = vista.pedirNia();
@@ -49,10 +57,19 @@ public class Controlador {
 				Dao.eliminarAlumnoCurso(pk3);
 				break;
 			case 9: 
-				
+				ArrayList<Grupo> gOpcion9 = Dao.mostrarGrupos();
+				Conversor convOpcion9 = new ConversorJSON();
+				convOpcion9.exportarGrupos(gOpcion9);
 				break;
 			case 10:
-				
+				Conversor convOpcion10 = new ConversorJSON();
+				ArrayList<Grupo> gOpcion10 = convOpcion10.importarGrupos();
+				for(Grupo auxG:gOpcion10) {
+					for(Alumno auxA:auxG.getAlumnos()) {
+						Dao.insertarAlumno(auxA);
+					}
+					Dao.insertarGrupo(auxG);
+				}
 				break;
 			case 0:
 				

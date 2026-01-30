@@ -1,11 +1,11 @@
 package Model;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Grupo {
 	private String nombre, ciclo, curso;
 	private ArrayList<Alumno> alumnos;
+	private int Id_grupo;
 	
 	public String getNombre() {
 		return nombre;
@@ -20,7 +20,7 @@ public class Grupo {
 	}
 
 	public void setCiclo(String ciclo) {
-		ciclo = ciclo;
+		this.ciclo = ciclo;
 	}
 
 	public String getCurso() {
@@ -28,7 +28,7 @@ public class Grupo {
 	}
 
 	public void setCurso(String curso) {
-		curso = curso;
+		this.curso = curso;
 	}
 
 	public ArrayList<Alumno> getAlumnos() {
@@ -37,6 +37,13 @@ public class Grupo {
 
 	public void setAlumnos(ArrayList<Alumno> alumnos) {
 		this.alumnos = alumnos;
+	}
+	public int getId_grupo() {
+		return Id_grupo;
+	}
+
+	public void setId_grupo(int id_grupo) {
+		Id_grupo = id_grupo;
 	}
 
 	public Grupo() {
@@ -57,9 +64,10 @@ public class Grupo {
 
 	@Override
 	public String toString() {
-		return "Grupo [nombre=" + nombre + ", ciclo=" + ciclo + ", curso=" + curso + ", alumnos=" + alumnos + "]";
+		return "Grupo [id: " + this.Id_grupo+"nombre=" + nombre + ", ciclo=" + ciclo + ", curso=" + curso + ", alumnos=" + alumnos + "]";
 	}
 	public void aniadirAlumno(Alumno al) {
 		alumnos.add(al);
 	}
+
 }

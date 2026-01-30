@@ -1,5 +1,7 @@
 package Dao;
 
+import java.util.ArrayList;
+
 import Model.Alumno;
 import Model.Grupo;
 
@@ -39,9 +41,20 @@ public class AlumnoDaoImplJson implements AlumnoDao {
 		
 	}
 	@Override
-	public void mostrarGrupos() {
+	public ArrayList<Grupo> mostrarGrupos() {
 		// TODO Auto-generated method stub
+		return null;
 		
+	}
+	@Override
+	public ArrayList<Alumno> obtenerAlumnos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public ArrayList<Alumno> obtenerAlumnosPk(int pk) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
