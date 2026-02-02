@@ -23,14 +23,14 @@ public class Controlador {
 			opcion = vista.pedirOpcion();
 			switch(opcion) {
 			case 1: 
-				Dao.insertarGrupo(new Grupo(vista.pedirNombreGrupo(), vista.pedirCiclo(), vista.pedirCurso()));
+				Dao.guardarGrupo(new Grupo(vista.pedirNombreGrupo(), vista.pedirCiclo(), vista.pedirCurso()));
 				break;
 			case 2:
 				Dao.mostrarGrupos();
-				Dao.insertarAlumno(new Alumno(vista.pedirNia(), vista.pedirNombreAlumno(), vista.pedirApellidos(), vista.pedirGenero(), vista.pedirFecha(), vista.pedirIdGrupo()));
+				Dao.guardarAlumno(new Alumno(vista.pedirNia(), vista.pedirNombreAlumno(), vista.pedirApellidos(), vista.pedirGenero(), vista.pedirFecha(), vista.pedirIdGrupo()));
 				break;
 			case 3:
-				Dao.mostrarAlumnos();
+				vista.mostrarDatosAlumnoGrupo(Dao.mostrarAlumnos());
 				break;
 			case 4:
 				ArrayList<Alumno> aOpcion4 = Dao.obtenerAlumnos();
@@ -41,7 +41,7 @@ public class Controlador {
 				Conversor convOpcion5 = new ConversorTexto();
 				ArrayList<Alumno> aOpcion5 = convOpcion5.importarAlumnos();
 				for(Alumno aux:aOpcion5) {
-					Dao.insertarAlumno(aux);
+					Dao.guardarAlumno(aux);
 				}
 				break;
 			case 6:
@@ -66,9 +66,9 @@ public class Controlador {
 				ArrayList<Grupo> gOpcion10 = convOpcion10.importarGrupos();
 				for(Grupo auxG:gOpcion10) {
 					for(Alumno auxA:auxG.getAlumnos()) {
-						Dao.insertarAlumno(auxA);
+						Dao.guardarAlumno(auxA);
 					}
-					Dao.insertarGrupo(auxG);
+					Dao.guardarGrupo(auxG);
 				}
 				break;
 			case 0:

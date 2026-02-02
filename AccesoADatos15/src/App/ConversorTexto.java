@@ -26,7 +26,7 @@ public class ConversorTexto implements Conversor{
 	                alu.getNombre(),
 	                alu.getApellidos(),
 	                alu.getGenero(),
-	                alu.getFecha_nacimiento(), // LocalDate usa formato YYYY-MM-DD por defecto
+	                alu.getFecha_nacimiento(),
 	                alu.getGrupo()
 	            );
 	            

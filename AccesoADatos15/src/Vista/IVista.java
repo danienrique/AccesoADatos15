@@ -1,6 +1,7 @@
 package Vista;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public interface IVista {
 	public void mostrarMenu();
@@ -14,4 +15,5 @@ public interface IVista {
 	public int pedirIdGrupo();
 	public String pedirCiclo();
 	public String pedirCurso();
+	public void mostrarDatosAlumnoGrupo(ArrayList<String> aux);
 }

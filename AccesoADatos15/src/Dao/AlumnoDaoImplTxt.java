@@ -8,38 +8,38 @@ import Model.Grupo;
 public class AlumnoDaoImplTxt implements AlumnoDao{
 	
 	@Override
-	public void mostrarAlumnos() {
+	public ArrayList<String> mostrarAlumnos() {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 	@Override
-	public void insertarGrupo(Grupo g) {
+	public boolean guardarGrupo(Grupo g) {
 		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void insertarAlumno(Alumno a) {
-		// TODO Auto-generated method stub
-		
+		return true;
 	}
 
 	@Override
-	public void modificarNombreAlumno(int pk) {
+	public boolean guardarAlumno(Alumno a) {
 		// TODO Auto-generated method stub
-		
+		return true;
 	}
 
 	@Override
-	public void eliminarAlumnoPK(int pk) {
+	public boolean modificarNombreAlumno(int pk) {
 		// TODO Auto-generated method stub
-		
+		return true;
 	}
 
 	@Override
-	public void eliminarAlumnoCurso(int pk) {
+	public boolean eliminarAlumnoPK(int pk) {
 		// TODO Auto-generated method stub
-		
+		return true;
+	}
+
+	@Override
+	public boolean eliminarAlumnoCurso(int pk) {
+		// TODO Auto-generated method stub
+		return true;
 	}
 	@Override
 	public ArrayList<Grupo> mostrarGrupos() {

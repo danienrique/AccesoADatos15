@@ -3,6 +3,7 @@ package Vista;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class VistaImplConsola implements IVista{
@@ -49,7 +50,7 @@ public class VistaImplConsola implements IVista{
 
 	    do {
 	        System.out.println("Introduce el género del alumno (M/F)");
-	        String entrada = sc.nextLine().trim().toUpperCase(); // Limpiamos espacios y pasamos a mayúsculas
+	        String entrada = sc.nextLine().trim().toUpperCase(); 
 
 	        if (!entrada.isEmpty() && (entrada.charAt(0) == 'M' || entrada.charAt(0) == 'F')) {
 	            genero = entrada.charAt(0);
@@ -63,20 +64,17 @@ public class VistaImplConsola implements IVista{
 	}
 	@Override
 	public LocalDate pedirFecha() {
-	    // Definimos el formato que queremos (ejemplo: día/mes/año)
-	    DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	    DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy/mm/dd");
 	    LocalDate fechaValida = null;
 
 	    while (fechaValida == null) {
 	        try {
-	            System.out.println("Introduce la fecha de nacimiento (dd/mm/aaaa):");
+	            System.out.println("Introduce la fecha de nacimiento (aaaa/mm/dd):");
 	            String entrada = sc.nextLine();
-	            
-	            // Intentamos convertir la entrada usando nuestro formato
 	            fechaValida = LocalDate.parse(entrada, formato);
 	            
 	        } catch (DateTimeParseException e) {
-	            System.out.println("Formato incorrecto. Por favor, usa el formato día/mes/año (ej: 15/05/2000)");
+	            System.out.println("Formato incorrecto. Por favor, usa el formato día/mes/año (ej: 2000/10/05)");
 	        }
 	    }
 	    
@@ -113,5 +111,12 @@ public class VistaImplConsola implements IVista{
         int nia = sc.nextInt();
         sc.nextLine();
         return nia;
+	}
+	@Override
+	public void mostrarDatosAlumnoGrupo(ArrayList<String> aux) {
+		// TODO Auto-generated method stub
+		for(int i = 0; i<aux.size();i++) {
+			System.out.println(aux.get(i));
+		}
 	}
 }

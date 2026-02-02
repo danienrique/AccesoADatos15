@@ -25,48 +25,45 @@ public class AlumnoDaoImplSQL implements AlumnoDao {
 	}
 
 	@Override
-	public void mostrarAlumnos() {
+	public ArrayList<String> mostrarAlumnos() {
 		// TODO Auto-generated method stub
+		ArrayList<String> alumnoGrupos = new ArrayList<String>();
+		String linea;
 		String sql = "SELECT a.Nia, a.Nombre, a.Apellidos, a.Genero, a.FechaNac, g.Nombre, g.Curso, g.Ciclo "
-				+ "FROM alumnos a JOIN grupos g ON a.Id_grupo = g.Id_grupo";
+				+ "FROM alumnos a LEFT JOIN grupos g ON a.Id_grupo = g.Id_grupo";
 		try (Connection c = MyDataSource.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				System.out.printf("%d %s %s %s %s | Grupo: %s (%s - %s)%n", rs.getInt(1), rs.getString(2),
+				linea = String.format("%d %s %s %s %s | Grupo: %s (%s - %s)%n", rs.getInt(1), rs.getString(2),
 						rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7),
 						rs.getString(8));
+				alumnoGrupos.add(linea);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return alumnoGrupos;
 	}
 
 	@Override
-	public void insertarGrupo(Grupo g) {
-		// TODO Auto-generated method stub
-		System.out.print("Nombre del grupo: ");
-		String nombre = sc.nextLine();
-		System.out.print("Ciclo: ");
-		String ciclo = sc.nextLine();
-		System.out.print("Curso: ");
-		String curso = sc.nextLine();
-
+	public boolean guardarGrupo(Grupo g) {
 		try (Connection con = MyDataSource.getConnection();
 				PreparedStatement ps = con
 						.prepareStatement("INSERT INTO grupos (Nombre, Ciclo, Curso) VALUES (?, ?, ?)");) {
-			ps.setString(1, nombre);
-			ps.setString(3, ciclo);
-			ps.setString(2, curso);
+			ps.setString(1, g.getNombre());
+			ps.setString(2, g.getCiclo());
+			ps.setString(3, g.getCurso());
 			ps.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		System.out.println("Grupo insertado correctamente");
+//		System.out.println("Grupo insertado correctamente");
+		return true;
 	}
 
 	@Override
-	public void insertarAlumno(Alumno a) {
+	public boolean guardarAlumno(Alumno a) {
 		// TODO Auto-generated method stub
 		try (Connection con = MyDataSource.getConnection();
 				PreparedStatement ps = con
@@ -82,11 +79,12 @@ public class AlumnoDaoImplSQL implements AlumnoDao {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		System.out.println("Alumno insertado correctamente");
+//		System.out.println("Alumno insertado correctamente");
+		return true;
 	}
 
 	@Override
-	public void modificarNombreAlumno(int pk) {
+	public boolean modificarNombreAlumno(int pk) {
 		System.out.println("Indique el nuevo nombre de la persona");
 		String nombreNuevo = sc.nextLine();
 		try (Connection con = MyDataSource.getConnection();
@@ -98,10 +96,11 @@ public class AlumnoDaoImplSQL implements AlumnoDao {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+		return true;
 	}
 
 	@Override
-	public void eliminarAlumnoPK(int pk) {
+	public boolean eliminarAlumnoPK(int pk) {
 		// TODO Auto-generated method stub
 		System.out.print("NIA del alumno: ");
 		int nia = sc.nextInt();
@@ -115,10 +114,10 @@ public class AlumnoDaoImplSQL implements AlumnoDao {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-
+		return true;
 	}
 	@Override
-	public void eliminarAlumnoCurso(int pk) {
+	public boolean eliminarAlumnoCurso(int pk) {
 		// TODO Auto-generated method stub
 		try (Connection con = MyDataSource.getConnection()) {
 //			try (PreparedStatement ps = con.prepareStatement("SELECT Nombre, Curso, Ciclo FROM grupos")) {
@@ -139,6 +138,7 @@ public class AlumnoDaoImplSQL implements AlumnoDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return true;
 	}
 	@Override
 	public ArrayList<Grupo> mostrarGrupos() {
